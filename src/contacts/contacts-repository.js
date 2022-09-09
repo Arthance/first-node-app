@@ -1,9 +1,20 @@
 const fs = require("fs/promises");
+const { generateRandomId } = require("../utils/generate-random-id");
 
 class contactsRepository {
   async findAll() {
-    const contacts = await JSON.parse(fs.readFile("./contacts.json", "utf-8"));
+    const contacts = JSON.parse(
+      await fs.readFile("./contacts.json", "utf8")
+    );
     return contacts;
+  }
+
+  async createOne(contactsObj) {
+    const contacts = JSON.parse(await fs.readFile("./contacts.json", "utf8"));
+    const id = generateRandomId();
+    contactsObj.id = id;
+    contacts[id] = contactsObj;
+    await fs.writeFile("./contacts.json", JSON.stringify(contacts));
   }
 }
 

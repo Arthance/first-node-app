@@ -8,6 +8,10 @@ class ContactsServices {
   findAll() {
     return this.contactsRepository.findAll();
   }
+
+  createOne(contactsObject) {
+    return this.contactsRepository.createOne(contactsObject);
+  }
 }
 
 module.exports = ContactsServices;

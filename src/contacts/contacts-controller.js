@@ -9,6 +9,11 @@ class ContactsController{
     const contacts = await this.contactsService.findAll();
     return response.send(contacts);
   }
+
+  createOne = async (request, response) => {
+    await this.contactsService.createOne(request.body);
+    response.status(201).send("Contact created succesfully !");
+  }
 }
 
 module.exports.ContactsController = ContactsController;

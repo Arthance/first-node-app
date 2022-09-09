@@ -6,7 +6,7 @@ const contactsController = new ContactsController();
 
 contactsRouter.get("/", contactsController.findAll);
 // contactsRouter.get("/:id");
-// contactsRouter.post("/");
+contactsRouter.post("/", contactsController.createOne);
 // contactsRouter.put("/:id");
 // contactsRouter.delete("/:id");
 
