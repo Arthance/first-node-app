@@ -3,10 +3,13 @@ const { generateRandomId } = require("../utils/generate-random-id");
 
 class contactsRepository {
   async findAll() {
-    const contacts = JSON.parse(
-      await fs.readFile("./contacts.json", "utf8")
-    );
+    const contacts = JSON.parse(await fs.readFile("./contacts.json", "utf8"));
     return contacts;
+  }
+
+  async findOne(id) {
+    const contacts = JSON.parse(await fs.readFile("./contacts.json", "utf-8"));
+    return contacts[id];
   }
 
   async createOne(contactsObj) {
