@@ -17,14 +17,36 @@ class ContactsController {
       const contacts = await this.contactsService.findOne(id);
       response.send(contacts);
     } catch (err) {
-      console.log("Erreur : ", err.message);
+      console.log("Error : ", err.message);
       response.status(404).send(err.message);
     }
   };
 
   createOne = async (request, response) => {
     await this.contactsService.createOne(request.body);
-    response.status(201).send("Contact created succesfully !");
+    response.status(201).send("Contact created successfully !");
+  };
+
+  updateOne = async (request, response) => {
+    try {
+      const id = request.params.id;
+      await this.contactsService.updateOne(id, request.body);
+      response.send("Contact updated successfully !");
+    } catch (err) {
+      console.log("Error : ", err.message);
+      response.status(404).send(err.message);
+    }
+  };
+
+  deleteOne = async (request, response) => {
+    try {
+      const id = request.params.id;
+      await this.contactsService.deleteOne(id);
+      response.send("Contact deleted successfully !");
+    } catch (err) {
+      console.log("Error : ", err.message);
+      response.status(404).send(err.message);
+    }
   };
 }
 

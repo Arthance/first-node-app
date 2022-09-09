@@ -18,6 +18,18 @@ class ContactsServices {
   createOne(contactsObject) {
     return this.contactsRepository.createOne(contactsObject);
   }
+
+  async updateOne(id, contactsObject) {
+    const contacts = await this.contactsRepository.findOne(id);
+    if (!contacts) throw new Error(`Cannot find contact with id ${id}`);
+    return this.contactsRepository.updateOne(id, contactsObject);
+  }
+
+  async deleteOne(id) {
+    const contacts = await this.contactsRepository.findOne(id);
+    if (!contacts) throw new Error(`Cannot find contact with id ${id}`);
+    return this.contactsRepository.updateOne(id, contactsObject);
+  }
 }
 
 module.exports = ContactsServices;
