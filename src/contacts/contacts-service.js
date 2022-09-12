@@ -28,7 +28,7 @@ class ContactsServices {
   async deleteOne(id) {
     const contacts = await this.contactsRepository.findOne(id);
     if (!contacts) throw new Error(`Cannot find contact with id ${id}`);
-    return this.contactsRepository.updateOne(id, contactsObject);
+    return this.contactsRepository.deleteOne(id);
   }
 }
 
